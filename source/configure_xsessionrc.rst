@@ -3,7 +3,7 @@ The ``.xsessionrc`` File
 
 Here we are, the (kind of) final step! After this, you should have a basic, working instance of xmonad. The ``.xsessionrc`` file basically sets up all the instances needed (xmobar, stalonetray, etc) at login. It's simply a bash script, with the whole "shebang" so to speak! (I couldn't resist, look `here <http://en.wikipedia.org/wiki/Shebang_(Unix)>`_ if you're a little confused)
 
-Anyways, bad jokes aside, here's the joe-basic script that'll get you going for now. It will *have* to be place in ``~/.xsessionrc`` (you can do ``touch ~/.xsessionrc`` or like I also mentioned, ``vim ~/.xsessionrc``::
+Anyways, bad jokes aside, here's the joe-basic script that'll get you going for now. It will *have* to be placed in ``~/.xsessionrc`` (you can do ``touch ~/.xsessionrc`` or like I also mentioned, ``vim ~/.xsessionrc``::
 
     #!/bin/bash
 
