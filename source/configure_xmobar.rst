@@ -21,7 +21,7 @@ Here's what's inside my ``.xmobarrc``::
                                 ]
                 , sepChar = "%"
                 , alignSep = "}{"
-                , template = "%StdinReader% | %cpu% | %memory% * %swap% }{<fc=#ee9a00>%date%</fc>| %eth0% - %eth1% | %uname% | %CYVR% "
+                , template = "%StdinReader% | %cpu% | %memory% * %swap% | %eth0% - %eth1% }{<fc=#ee9a00>%date%</fc> | %uname% | %CYVR% "
                 }
 
 Whoa, that's a lot of options! Let's break it down line by line:

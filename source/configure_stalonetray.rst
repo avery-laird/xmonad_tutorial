@@ -8,7 +8,7 @@ Here's what my stalonetray configuration looks like::
 	decorations none
 	transparent false
 	dockapp_mode none
-	geometry 5x1-525+0
+	geometry 5x1-400+0
 	max_geometry 5x1-325-10
 	background "#000000"
 	kludges force_icons_size
