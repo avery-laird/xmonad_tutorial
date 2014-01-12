@@ -3,7 +3,7 @@
 Installing Xmonad
 *****************
 
-When installing xmonad, pretty much any package manager will do. You can even compile from source, but if you're reading the beginning beginner's guide to xmonad, I would recommend against that unless you follow an extremely clear guide (like this). I use APT for package management.
+When installing xmonad, pretty much any package manager will do. You can even compile from source, but if you're reading the beginning beginner's guide to xmonad, I would recommend against that unless you follow an extremely clear guide (like `this <http://xmonad.org/intro.html>`_). I use APT for package management.
 
 ===================================
 Install xmonad and some handy tools
