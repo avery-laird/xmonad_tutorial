@@ -1,0 +1,133 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Installing Xmonad &mdash; Xmonad Tutorial for Beginning Beginners 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Xmonad Tutorial for Beginning Beginners 1.0 documentation" href="index.html" />
+    <link rel="next" title="Configuring Xmobar" href="configure_xmobar.html" />
+    <link rel="prev" title="Introduction to using Xmonad" href="intro.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="configure_xmobar.html" title="Configuring Xmobar"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="intro.html" title="Introduction to using Xmonad"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Xmonad Tutorial for Beginning Beginners 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="installing-xmonad">
+<span id="id1"></span><h1>Installing Xmonad<a class="headerlink" href="#installing-xmonad" title="Permalink to this headline">¶</a></h1>
+<p>When installing xmonad, pretty much any package manager will do. You can even compile from source, but if you&#8217;re reading the beginning beginner&#8217;s guide to xmonad, I would recommend against that unless you follow an extremely clear guide (like this). I use APT for package management.</p>
+<div class="section" id="install-xmonad-and-some-handy-tools">
+<h2>Install xmonad and some handy tools<a class="headerlink" href="#install-xmonad-and-some-handy-tools" title="Permalink to this headline">¶</a></h2>
+<p>Install xmonad and dmenu:</p>
+<p><tt class="docutils literal"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">xmonad</span> <span class="pre">suckless-tools</span> <span class="pre">xscreensaver</span></tt></p>
+<p>The package <tt class="docutils literal"><span class="pre">suckless-tools</span></tt> installs dmenu on my latest version of ubuntu just fine. Older versions may have to install <tt class="docutils literal"><span class="pre">dwm-tools</span></tt> instead, and other distros might have to search for dmenu as a separate package. Dmenu is a bit of a must-have for getting started, because it allows the execution of applications easily, as we&#8217;ll see later. If you decide for some reason later on that dmenu is not for you, it&#8217;s easily uninstallible however I recommend that you get started with dmenu. The <tt class="docutils literal"><span class="pre">xscreensaver</span></tt> package will be used later on, with handling lock screens.</p>
+</div>
+<div class="section" id="configuration-and-tweaking-and-maybe-some-more-installing">
+<h2>Configuration and tweaking (and maybe some more installing)<a class="headerlink" href="#configuration-and-tweaking-and-maybe-some-more-installing" title="Permalink to this headline">¶</a></h2>
+<p>If you were to login using xmonad right now, you would be greeted with an entirely black screen. For the sake of simplicity, let&#8217;s hold off on that just yet and do a bit more housework first. Next we&#8217;re going to install xmobar, a handy status bar popular among xmonad users. Like before, I&#8217;m going to use APT to install:</p>
+<p><tt class="docutils literal"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">xmobar</span></tt></p>
+<p>Once again, xmonad would still show us a nice black screen. Like pretty much anything in xmonad, xmobar requires some hefty configuration to start looking pretty. That configuration is supplied by a file in your home directory, <tt class="docutils literal"><span class="pre">~/.xmobarrc</span></tt>. You might have to create it, or it may already be there. If it&#8217;s not there, do <tt class="docutils literal"><span class="pre">touch</span> <span class="pre">~/.xmobarrc</span></tt>, and use any text editor you like to make the nessecary changes. I prefer vim for small things like this. With that done, let&#8217;s move on to the next section.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Installing Xmonad</a><ul>
+<li><a class="reference internal" href="#install-xmonad-and-some-handy-tools">Install xmonad and some handy tools</a></li>
+<li><a class="reference internal" href="#configuration-and-tweaking-and-maybe-some-more-installing">Configuration and tweaking (and maybe some more installing)</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="intro.html"
+                        title="previous chapter">Introduction to using Xmonad</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="configure_xmobar.html"
+                        title="next chapter">Configuring Xmobar</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/installing_xmonad.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="configure_xmobar.html" title="Configuring Xmobar"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="intro.html" title="Introduction to using Xmonad"
+             >previous</a> |</li>
+        <li><a href="index.html">Xmonad Tutorial for Beginning Beginners 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Avery Laird.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.
+    </div>
+  </body>
+</html>

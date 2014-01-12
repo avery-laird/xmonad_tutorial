@@ -1,0 +1,162 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Configuring Xmonad.hs &mdash; Xmonad Tutorial for Beginning Beginners 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Xmonad Tutorial for Beginning Beginners 1.0 documentation" href="index.html" />
+    <link rel="prev" title="Configuring Stalonetray" href="configure_stalonetray.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="configure_stalonetray.html" title="Configuring Stalonetray"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Xmonad Tutorial for Beginning Beginners 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="configuring-xmonad-hs">
+<h1>Configuring Xmonad.hs<a class="headerlink" href="#configuring-xmonad-hs" title="Permalink to this headline">¶</a></h1>
+<p>Now we are nearing the point where we could login to xmonad and be greeted by some friendly readouts, and perhaps a sign that the login was successful. As everything stands now:</p>
+<ul class="simple">
+<li>xmonad and dmenu are installed</li>
+<li>xmobar is installed and configured</li>
+<li>stalonetray is installed and configured</li>
+</ul>
+<p>Next, we have to configure xmonad itself. As you might have noticed, we&#8217;re following a bit of a pattern: install the software, configure the software and etc. After that, we tie it all together in the <tt class="docutils literal"><span class="pre">~/.xsessonrc</span></tt> file which is where all of the software is started during login. Once they&#8217;re started up, the software then references their config files.</p>
+<div class="section" id="xmonad-file-structure">
+<h2>Xmonad file structure<a class="headerlink" href="#xmonad-file-structure" title="Permalink to this headline">¶</a></h2>
+<p>The configuration files for xmonad are layed out a little bit like this:</p>
+<div class="highlight-python"><pre>~/.xmonad
+     |
+     +-- xmonad.hs</pre>
+</div>
+<p>Now, a lot of the time (or at least some of the time) you have to create this file structure yourself. This is quite simple.</p>
+<p><tt class="docutils literal"><span class="pre">sudo</span> <span class="pre">mkdir</span> <span class="pre">~/.xmonad</span> <span class="pre">&amp;&amp;</span> <span class="pre">cd</span> <span class="pre">~/.xmonad</span></tt></p>
+<p>And then:</p>
+<p><tt class="docutils literal"><span class="pre">touch</span> <span class="pre">xmonad.hs</span></tt></p>
+<p>Or if you&#8217;re like me and like to skip steps (and have vim installed) then you can do:</p>
+<p><tt class="docutils literal"><span class="pre">vim</span> <span class="pre">xmonad.hs</span></tt></p>
+<p>Notice the period before <tt class="docutils literal"><span class="pre">.xmonad</span></tt> and lack of period before <tt class="docutils literal"><span class="pre">xmonad.hs</span></tt>. This is important to get right.</p>
+</div>
+<div class="section" id="configure-xmonad">
+<h2>Configure Xmonad<a class="headerlink" href="#configure-xmonad" title="Permalink to this headline">¶</a></h2>
+<p><tt class="docutils literal"><span class="pre">Xmonad.hs</span></tt> is written in Haskell (as is the rest of xmonad itself) and can contain pretty any configuration you like. Mine is rather simple, and is a mish mash of various things I&#8217;ve found on the web and various things I&#8217;ve done myself:</p>
+<div class="highlight-python"><pre>import XMonad
+import XMonad.Hooks.DynamicLog
+import XMonad.Hooks.ManageDocks
+import XMonad.Util.Run(spawnPipe)
+import XMonad.Util.EZConfig(additionalKeys)
+import System.IO
+
+main = do
+    xmproc &lt;- spawnPipe "xmobar"
+
+    xmonad $ defaultConfig
+        { manageHook = manageDocks &lt;+&gt; manageHook defaultConfig
+        , layoutHook = avoidStruts  $  layoutHook defaultConfig
+        , logHook = dynamicLogWithPP xmobarPP
+                        { ppOutput = hPutStrLn xmproc
+                        , ppTitle = xmobarColor "green" "" . shorten 50
+                        }
+        , modMask = mod4Mask     -- Rebind Mod to the Windows key
+        } `additionalKeys`
+        [ ((mod4Mask .|. shiftMask, xK_z), spawn "xscreensaver-command -lock; xset dpms force off")
+        , ((controlMask, xK_Print), spawn "sleep 0.2; scrot -s")
+        , ((0, xK_Print), spawn "scrot")
+        ]</pre>
+</div>
+<p>I won&#8217;t go into large detail like I have with the other files, mostly because this isn&#8217;t so much a configuration file as an entity of xmonad itself and also because the documentation on Haskell (and xmonad with Haskell) are quite extensive. If you&#8217;re interested, <a class="reference external" href="http://www.haskell.org/haskellwiki/Xmonad">here</a> is a good place to start.</p>
+<p>The most notable things about this file you need to now is that the primary xmonad key (which you may not know, but so far has been Mod/ALT) is remapped to the Meta, or Windows, key. The last two lines are for taking screen shots (which I barely use) but one useful keybinding (<tt class="docutils literal"><span class="pre">Shift</span> <span class="pre">+</span> <span class="pre">Meta</span> <span class="pre">+</span> <span class="pre">Z</span></tt>) is for locking the screen. It invokes <tt class="docutils literal"><span class="pre">xscreensaver-command</span> <span class="pre">-lock</span></tt> and then <tt class="docutils literal"><span class="pre">xset</span> <span class="pre">dpms</span> <span class="pre">force</span> <span class="pre">off</span></tt> to actually switch off the monitor (I&#8217;ve found that my laptop backlight stays on, and in an effort to save power and pixels I have included this command as well). For extensive config examples and inspiration, try looking on the web &#8211; or try something like <a class="reference external" href="http://www.vicfryzel.com/2010/06/27/obtaining-a-beautiful-usable-xmonad-configuration">this</a>.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Configuring Xmonad.hs</a><ul>
+<li><a class="reference internal" href="#xmonad-file-structure">Xmonad file structure</a></li>
+<li><a class="reference internal" href="#configure-xmonad">Configure Xmonad</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="configure_stalonetray.html"
+                        title="previous chapter">Configuring Stalonetray</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/configure_xmonadhs.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="configure_stalonetray.html" title="Configuring Stalonetray"
+             >previous</a> |</li>
+        <li><a href="index.html">Xmonad Tutorial for Beginning Beginners 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Avery Laird.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.
+    </div>
+  </body>
+</html>

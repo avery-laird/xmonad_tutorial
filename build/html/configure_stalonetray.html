@@ -1,0 +1,145 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Configuring Stalonetray &mdash; Xmonad Tutorial for Beginning Beginners 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Xmonad Tutorial for Beginning Beginners 1.0 documentation" href="index.html" />
+    <link rel="next" title="Configuring Xmonad.hs" href="configure_xmonadhs.html" />
+    <link rel="prev" title="Configuring Xmobar" href="configure_xmobar.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="configure_xmonadhs.html" title="Configuring Xmonad.hs"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="configure_xmobar.html" title="Configuring Xmobar"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Xmonad Tutorial for Beginning Beginners 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="configuring-stalonetray">
+<h1>Configuring Stalonetray<a class="headerlink" href="#configuring-stalonetray" title="Permalink to this headline">¶</a></h1>
+<p>Stalonetray is a small &#8220;stand-alone&#8221; tray, nice easy and simple to use. It&#8217;s installed with a simple APT command: <tt class="docutils literal"><span class="pre">sudo</span> <span class="pre">apt-get</span> <span class="pre">install</span> <span class="pre">stalonetray</span></tt>. Like xmobar, it also gets it&#8217;s parameters from a file in your home directory called <tt class="docutils literal"><span class="pre">~/.stalonetrayrc</span></tt>. Also like xmobar, if the file does not yet exist, create it.</p>
+<p>Here&#8217;s what my stalonetray configuration looks like:</p>
+<div class="highlight-python"><pre>decorations none
+transparent false
+dockapp_mode none
+geometry 5x1-525+0
+max_geometry 5x1-325-10
+background "#000000"
+kludges force_icons_size
+grow_gravity NE
+icon_gravity NE
+icon_size 12
+sticky true
+#window_strut none
+window_type dock
+window_layer bottom
+#no_shrink false
+skip_taskbar true</pre>
+</div>
+<p>I will go into less detail for these options than xmobar, because the documentation is more or less quite easy to understand. I will touch on the more important ones, however:</p>
+<p><tt class="docutils literal"><span class="pre">geometry</span> <span class="pre">5x1-523+0</span></tt>: The first two values, <tt class="docutils literal"><span class="pre">5x1</span></tt> are the height and width of the bar (measured in multiples of icon slots, e.g. 5 icons wide and 1 icon high). The next two are the <tt class="docutils literal"><span class="pre">x</span></tt> and <tt class="docutils literal"><span class="pre">y</span></tt> positions.</p>
+<p><tt class="docutils literal"><span class="pre">background</span> <span class="pre">&quot;#000000&quot;</span></tt>: Black background, to match xmobar.</p>
+<div class="section" id="what-next">
+<h2>What Next<a class="headerlink" href="#what-next" title="Permalink to this headline">¶</a></h2>
+<p>If you were to run stalonetray right now, most likely it would simply be an empty black bar. With no icons to fill it, it would just blend right in with xmobar. In the next part, however, when we configure the <tt class="docutils literal"><span class="pre">xmonad.hs</span></tt> file, processes will be started on login and will populate stalonetray. Let&#8217;s get started!</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Configuring Stalonetray</a><ul>
+<li><a class="reference internal" href="#what-next">What Next</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="configure_xmobar.html"
+                        title="previous chapter">Configuring Xmobar</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="configure_xmonadhs.html"
+                        title="next chapter">Configuring Xmonad.hs</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/configure_stalonetray.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="configure_xmonadhs.html" title="Configuring Xmonad.hs"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="configure_xmobar.html" title="Configuring Xmobar"
+             >previous</a> |</li>
+        <li><a href="index.html">Xmonad Tutorial for Beginning Beginners 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Avery Laird.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.
+    </div>
+  </body>
+</html>

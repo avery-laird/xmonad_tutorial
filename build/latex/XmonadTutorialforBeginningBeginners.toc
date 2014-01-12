@@ -1,0 +1,4 @@
+\select@language {english}
+\contentsline {chapter}{\numberline {1}Introduction to using Xmonad}{3}{chapter.1}
+\contentsline {chapter}{\numberline {2}The Tutorial Part of the Tutorial}{5}{chapter.2}
+\contentsline {chapter}{\numberline {3}Indices and tables}{7}{chapter.3}

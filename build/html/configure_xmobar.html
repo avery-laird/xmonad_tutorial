@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Configuring Xmobar &mdash; Xmonad Tutorial for Beginning Beginners 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Xmonad Tutorial for Beginning Beginners 1.0 documentation" href="index.html" />
+    <link rel="next" title="Configuring Stalonetray" href="configure_stalonetray.html" />
+    <link rel="prev" title="Installing Xmonad" href="installing_xmonad.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="configure_stalonetray.html" title="Configuring Stalonetray"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="installing_xmonad.html" title="Installing Xmonad"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Xmonad Tutorial for Beginning Beginners 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="configuring-xmobar">
+<h1>Configuring Xmobar<a class="headerlink" href="#configuring-xmobar" title="Permalink to this headline">¶</a></h1>
+<p>Here&#8217;s what&#8217;s inside my <tt class="docutils literal"><span class="pre">.xmobarrc</span></tt>:</p>
+<div class="highlight-python"><pre>Config { font = "-*-Fixed-Bold-R-Normal-*-13-*-*-*-*-*-*-*"
+        , borderColor = "black"
+        , border = TopB
+        , bgColor = "black"
+        , fgColor = "grey"
+        , position = TopW L 100
+        , commands = [ Run Weather "CYVR" ["-t","&lt;tempC&gt;C","-L","18","-H","25","--normal","green","--high","red","--low","lightblue"] 36000
+                        , Run Network "eth0" ["-L","0","-H","32","--normal","green","--high","red"] 10
+                        , Run Network "eth1" ["-L","0","-H","32","--normal","green","--high","red"] 10
+                        , Run Cpu ["-L","3","-H","50","--normal","green","--high","red"] 10
+                        , Run Memory ["-t","Mem: &lt;usedratio&gt;%"] 10
+                        , Run Swap [] 10
+                        , Run Com "uname" ["-s","-r"] "" 36000
+                        , Run Date "%a %b %_d %Y %H:%M:%S" "date" 10
+                        , Run StdinReader
+                        ]
+        , sepChar = "%"
+        , alignSep = "}{"
+        , template = "%StdinReader% | %cpu% | %memory% * %swap% }{&lt;fc=#ee9a00&gt;%date%&lt;/fc&gt;| %eth0% - %eth1% | %uname% | %CYVR% "
+        }</pre>
+</div>
+<p>Whoa, that&#8217;s a lot of options! Let&#8217;s break it down line by line:</p>
+<p><tt class="docutils literal"><span class="pre">,</span> <span class="pre">borderColor</span> <span class="pre">=</span> <span class="pre">&quot;black&quot;</span></tt>: Defines xmobar&#8217;s border colour as black.</p>
+<p><tt class="docutils literal"><span class="pre">,</span> <span class="pre">border</span> <span class="pre">=</span> <span class="pre">TopB</span></tt>: Draws a border at the top of xmobar&#8217;s window. Black in this case, as defined in the previous setting.</p>
+<p><tt class="docutils literal"><span class="pre">,</span> <span class="pre">bgColor</span> <span class="pre">=</span> <span class="pre">&quot;black&quot;</span></tt>: Defines xmobar&#8217;s background colour as black.</p>
+<p><tt class="docutils literal"><span class="pre">,</span> <span class="pre">fgColor</span> <span class="pre">=</span> <span class="pre">&quot;grey&quot;</span></tt>: Defines the default font colour as grey.</p>
+<p><tt class="docutils literal"><span class="pre">,</span> <span class="pre">position</span> <span class="pre">=</span> <span class="pre">TopW</span> <span class="pre">L</span> <span class="pre">94</span></tt>: Defines the position of xmobar as the top of the screen, on the left hand side, taking up 100% of width of the screen.</p>
+<p><tt class="docutils literal"><span class="pre">,</span> <span class="pre">commands</span> <span class="pre">=</span> <span class="pre">[]</span></tt>: This defines a list of commands, or things to do when xmobar starts up. All of the newlines starting with a comma and <tt class="docutils literal"><span class="pre">Run</span></tt> define different ways of getting information from different areas of the system, and how to display that information on the bar.</p>
+<p><tt class="docutils literal"><span class="pre">,</span> <span class="pre">sepChar</span> <span class="pre">=</span> <span class="pre">&quot;%&quot;</span></tt>: Character to be used for indicating commands in the output template. (<tt class="docutils literal"><span class="pre">%</span></tt> is the default anyways).</p>
+<p><tt class="docutils literal"><span class="pre">,</span> <span class="pre">alignSep</span> <span class="pre">=</span> <span class="pre">&quot;}{&quot;</span></tt>: The characters that define which commands in the output template are aligned left, and which are aligned right. Any commands on the left side of a <tt class="docutils literal"><span class="pre">}</span></tt> are aligned to the left side, and any on the right side of a <tt class="docutils literal"><span class="pre">{</span></tt> are aligned to the right side. This will make a bit more sense in the next (and final) explanation.</p>
+<p><tt class="docutils literal"><span class="pre">,</span> <span class="pre">template</span> <span class="pre">=</span> <span class="pre">&quot;%StdinReader%</span> <span class="pre">|</span> <span class="pre">%cpu%</span> <span class="pre">|</span> <span class="pre">%memory%</span> <span class="pre">*</span> <span class="pre">%swap%</span> <span class="pre">}{&lt;fc=#ee9a00&gt;%date%&lt;/fc&gt;|</span> <span class="pre">%eth0%</span> <span class="pre">-</span> <span class="pre">%eth1%</span> <span class="pre">|</span> <span class="pre">%uname%</span> <span class="pre">|</span> <span class="pre">%CYVR%</span> <span class="pre">&quot;</span></tt>: This one may not be immediately obvious at first glance. Basically, this is a template to define how the data retrieved by the various commands we ran earlier should be displayed. Going from left to right, it says that the data from <tt class="docutils literal"><span class="pre">StdinReader</span></tt>, CPU usage, memory usage and swap usage should be shown on the left. Now we see here our friends the curly braces; as I explained before, they say that all that data should be on the left hand side. On the right hand side is the date (in orange, as defined by the <tt class="docutils literal"><span class="pre">&lt;fc&gt;</span></tt> tags), the download and upload speeds, kernel name and the temperature. I live in Vancouver, hence <tt class="docutils literal"><span class="pre">CYVR</span></tt>. <em>You&#8217;ll have to change that value to your area code.</em></p>
+<div class="section" id="final-thoughts">
+<h2>Final thoughts<a class="headerlink" href="#final-thoughts" title="Permalink to this headline">¶</a></h2>
+<p>You may not understand completely how the configuration file works at first, however give it time and slowly it will start to make sense. As we continue to delve deeper into the xmonad universe, the various connections between files will become more and more easy to follow. I promise! On we go to configuring stalonetray.</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Configuring Xmobar</a><ul>
+<li><a class="reference internal" href="#final-thoughts">Final thoughts</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="installing_xmonad.html"
+                        title="previous chapter">Installing Xmonad</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="configure_stalonetray.html"
+                        title="next chapter">Configuring Stalonetray</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/configure_xmobar.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="configure_stalonetray.html" title="Configuring Stalonetray"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="installing_xmonad.html" title="Installing Xmonad"
+             >previous</a> |</li>
+        <li><a href="index.html">Xmonad Tutorial for Beginning Beginners 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Avery Laird.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.
+    </div>
+  </body>
+</html>

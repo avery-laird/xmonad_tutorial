@@ -1,0 +1,158 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>The .xsessionrc File &mdash; Xmonad Tutorial for Beginning Beginners 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Xmonad Tutorial for Beginning Beginners 1.0 documentation" href="index.html" />
+    <link rel="next" title="Wallpaper" href="wallpaper.html" />
+    <link rel="prev" title="Configuring Xmonad.hs" href="configure_xmonadhs.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="wallpaper.html" title="Wallpaper"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="configure_xmonadhs.html" title="Configuring Xmonad.hs"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Xmonad Tutorial for Beginning Beginners 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="the-xsessionrc-file">
+<h1>The <tt class="docutils literal"><span class="pre">.xsessionrc</span></tt> File<a class="headerlink" href="#the-xsessionrc-file" title="Permalink to this headline">¶</a></h1>
+<p>Here we are, the (kind of) final step! After this, you should have a basic, working instance of xmonad. The <tt class="docutils literal"><span class="pre">.xsessionrc</span></tt> file basically sets up all the instances needed (xmobar, stalonetray, etc) at login. It&#8217;s simply a bash script, with the whole &#8220;shebang&#8221; so to speak! (I couldn&#8217;t resist, look <a class="reference external" href="http://en.wikipedia.org/wiki/Shebang_(Unix)">here</a> if you&#8217;re a little confused)</p>
+<p>Anyways, bad jokes aside, here&#8217;s the joe-basic script that&#8217;ll get you going for now. It will <em>have</em> to be place in <tt class="docutils literal"><span class="pre">~/.xsessionrc</span></tt> (you can do <tt class="docutils literal"><span class="pre">touch</span> <span class="pre">~/.xsessionrc</span></tt> or like I also mentioned, <tt class="docutils literal"><span class="pre">vim</span> <span class="pre">~/.xsessionrc</span></tt>:</p>
+<div class="highlight-python"><pre>#!/bin/bash
+
+# Load resources
+
+xrdb -merge .Xresources
+
+# Set up an icon tray
+stalonetray &amp;
+
+# Fire up apps
+
+xscreensaver -no-splash &amp;
+
+if [ -x /usr/bin/nm-applet ] ; then
+   nm-applet --sm-disable &amp;
+fi
+
+exec xmonad</pre>
+</div>
+<p>Now, this is very simple: it starts stalonetray, the xscreensaver daemon, the wifi applet, and then does some magic with <tt class="docutils literal"><span class="pre">stdout</span></tt> and xmonad (look <a class="reference external" href="http://ss64.com/bash/exec.html">here</a> if you&#8217;re interested).</p>
+<p>Congratulations! You&#8217;ve taken the first big step in the world of DIY window managing.</p>
+<div class="section" id="further-tweaks">
+<h2>Further Tweaks<a class="headerlink" href="#further-tweaks" title="Permalink to this headline">¶</a></h2>
+<p>Now, at this point, many simple things about xmonad are working, like:</p>
+<ul class="simple">
+<li>xmonad itself</li>
+<li>xmobar</li>
+<li>stalonetray (your icon bar)</li>
+<li>xscreensaver</li>
+</ul>
+<p>However, as I said before, xmonad doesn&#8217;t assume anything &#8211; meaning, there are many things you may still want working that xmonad does not do automatically like gnome or xfce. I chose to end part of the tutorial here for people who don&#8217;t care about those things yet, but if you want the following, try out the next section:</p>
+<ul class="simple">
+<li>Wallpaper</li>
+<li>Automatic handling of external media (mounting cd&#8217;s, usb drives, etc)</li>
+<li>Power management (battery info, suspension, etc)</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">The <tt class="docutils literal"><span class="pre">.xsessionrc</span></tt> File</a><ul>
+<li><a class="reference internal" href="#further-tweaks">Further Tweaks</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="configure_xmonadhs.html"
+                        title="previous chapter">Configuring Xmonad.hs</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="wallpaper.html"
+                        title="next chapter">Wallpaper</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/configure_xsessionrc.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="wallpaper.html" title="Wallpaper"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="configure_xmonadhs.html" title="Configuring Xmonad.hs"
+             >previous</a> |</li>
+        <li><a href="index.html">Xmonad Tutorial for Beginning Beginners 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, Avery Laird.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.
+    </div>
+  </body>
+</html>
