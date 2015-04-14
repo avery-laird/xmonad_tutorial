@@ -34,7 +34,7 @@ Whoa, that's a lot of options! Let's break it down line by line:
 
 ``, fgColor = "grey"``: Defines the default font colour as grey.
 
-``, position = TopW L 94``: Defines the position of xmobar as the top of the screen, on the left hand side, taking up 100% of width of the screen.
+``, position = TopW L 100``: Defines the position of xmobar as the top of the screen, on the left hand side, taking up 100% of width of the screen.
 
 ``, commands = []``: This defines a list of commands, or things to do when xmobar starts up. All of the newlines starting with a comma and ``Run`` define different ways of getting information from different areas of the system, and how to display that information on the bar.
 
