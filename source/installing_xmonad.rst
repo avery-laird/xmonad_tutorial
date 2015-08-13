@@ -23,4 +23,4 @@ If you were to login using xmonad right now, you would be greeted with an entire
 
 ``sudo apt-get install xmobar``
 
-Once again, xmonad would still show us a nice black screen. Like pretty much anything in xmonad, xmobar requires some hefty configuration to start looking pretty. That configuration is supplied by a file in your home directory, ``~/.xmobarrc``. You might have to create it, or it may already be there. If it's not there, do ``touch ~/.xmobarrc``, and use any text editor you like to make the nessecary changes. I prefer vim for small things like this. With that done, let's move on to the next section.  
+Once again, xmonad would still show us a nice black screen. Like pretty much anything in xmonad, xmobar requires some hefty configuration to start looking pretty. That configuration is supplied by a file in your home directory, ``~/.xmobarrc``. You might have to create it, or it may already be there. If it's not there, do ``touch ~/.xmobarrc``, and use any text editor you like to make the necessary changes. I prefer vim for small things like this. With that done, let's move on to the next section.  
