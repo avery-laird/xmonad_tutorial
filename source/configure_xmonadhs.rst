@@ -7,7 +7,7 @@ Now we are nearing the point where we could login to xmonad and be greeted by so
 * xmobar is installed and configured
 * stalonetray is installed and configured
 
-Next, we have to configure xmonad itself. As you might have noticed, we're following a bit of a pattern: install the software, configure the software and etc. After that, we tie it all together in the ``~/.xsessonrc`` file which is where all of the software is started during login. Once they're started up, the software then references their config files. 
+Next, we have to configure xmonad itself. As you might have noticed, we're following a bit of a pattern: install the software, configure the software and etc. After that, we tie it all together in the ``~/.xsessionrc`` file which is where all of the software is started during login. Once they're started up, the software then references their config files. 
 
 =====================
 Xmonad file structure
